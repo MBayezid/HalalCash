@@ -1,0 +1,234 @@
+package com.mb_lab.halal_cash.login;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.mb_lab.halal_cash.Constants;
+import com.mb_lab.halal_cash.CustomeDialogs.ViewLoadingAnimation;
+import com.mb_lab.halal_cash.DataModels.UserLoginDataModel;
+import com.mb_lab.halal_cash.DataModels.UserLoginResponse;
+import com.mb_lab.halal_cash.R;
+import com.mb_lab.halal_cash.Registration_Verification.Registration;
+import com.mb_lab.halal_cash.RetrofitAPI;
+import com.mb_lab.halal_cash.SessionManagers.UserSessionManager;
+import com.mb_lab.halal_cash.Util.InputInformationValidation;
+import com.mb_lab.halal_cash.resetPassword.AccountRecovery;
+import com.mb_lab.halal_cash.resetPassword.changePasswordConstants;
+import com.mb_lab.halal_cash.resetPassword.chooseVerificationOption;
+import com.mb_lab.halal_cash.home.Home;
+
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class Login extends AppCompatActivity {
+    private EditText userId, userPassword;
+    String user_id = null;
+    String user_id_type = null;
+    private final String TAG = "LoginActivity";
+    private ViewLoadingAnimation viewLoadingAnimation;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+        userId = findViewById(R.id.userId);
+        userPassword = findViewById(R.id.userPassword);
+
+        viewLoadingAnimation = new ViewLoadingAnimation(Login.this);
+        try {
+
+
+            user_id = getIntent().getStringExtra("user_id");
+            user_id_type = getIntent().getStringExtra("user_id_type");
+
+//            userId.setText(user_id);
+            if (user_id != null) {
+                Toast.makeText(Login.this, "Insert Password.", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(Login.this, "Insert User Id and Password.", Toast.LENGTH_LONG).show();
+            }
+
+
+        } catch (Exception e) {
+            Toast.makeText(Login.this, "Insert User Id and Password.", Toast.LENGTH_LONG).show();
+        }
+
+
+        findViewById(R.id.postLoginData).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                postLoginData();
+            }
+        });
+        findViewById(R.id.forgotPassword).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login.this, AccountRecovery.class);
+                intent.putExtra(changePasswordConstants.REQUEST_FOR,changePasswordConstants.REQUEST_FOR_FORGET_PASSWORD);
+                startActivity(intent);
+            }
+        });
+        findViewById(R.id.goToRegistration).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Login.this, Registration.class));
+            }
+        });
+
+
+    }
+
+
+    public void postLoginData() {
+        viewLoadingAnimation.showLoading(true);
+
+
+        String UserIdString = ((EditText) findViewById(R.id.userId)).getText().toString();
+        String UserPasswordString = ((EditText) findViewById(R.id.userPassword)).getText().toString();
+        //TODO  check for valod email or contact and password
+        Log.d(TAG, "tryLogin: userEmail: " + UserIdString);
+        Log.d(TAG, "tryLogin: userPass: " + UserPasswordString);
+
+        //todo check for user_id_type
+        String user_id_type = new InputInformationValidation().getUserIdType(UserIdString);
+
+//        if (UserIdString.contains("@")) {
+//            user_id_type = "email";
+//            Log.d(TAG, "user_id_type: " + user_id_type);
+//
+//        } else {
+//            user_id_type = "phone";
+//            Log.d(TAG, "user_id_type: " + user_id_type);
+//        }
+        if (user_id_type != null) {
+            postData(UserIdString, user_id_type, UserPasswordString);
+        }
+    }
+
+    private void postData(@NonNull String user_id, @NonNull String user_id_type, @NonNull String password) {
+
+        // below line is for displaying our progress bar.
+//        loadingPB.setVisibility(View.VISIBLE);
+
+        // on below line we are creating a retrofit
+        // builder and passing our base url
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constants.BASE_URL)
+                // as we are sending data in json format so
+                // we have to add Gson converter factory
+                .addConverterFactory(GsonConverterFactory.create())
+                // at last we are building our retrofit builder.
+                .build();
+        // below line is to create an instance for our retrofit api class.
+        RetrofitAPI.Login retrofitAPI = retrofit.create(RetrofitAPI.Login.class);
+
+        // passing data from our text fields to our modal class.
+//        UserLoginDataModel modal = new UserLoginDataModel(email,phone,password);
+        UserLoginDataModel modal = new UserLoginDataModel(user_id, user_id_type, password);
+
+        // calling a method to create a post and passing our modal class.
+        Call<UserLoginResponse> call = retrofitAPI.createPostBodyForUserLogin(modal);
+
+        // on below line we are executing our method.
+        call.enqueue(new Callback<UserLoginResponse>() {
+            @Override
+            public void onResponse(Call<UserLoginResponse> call, Response<UserLoginResponse> response) {
+                Log.d(TAG, "onResponse: successful: ");
+                // below line is for hiding our progress bar.
+
+
+//                loadingPB.setVisibility(View.GONE);
+
+                // on below line we are setting empty text
+                // to our both edit text.
+
+
+                // we are getting response from our body
+                // and passing it to our modal class.
+                UserLoginResponse responseFromAPI = response.body();
+
+                // on below line we are getting our data from modal class and adding it to our string.
+//                assert responseFromAPI != null;
+                int responseCode = response.code();
+                if (responseFromAPI != null) {
+                    if (responseCode == 201) {
+                        Log.d(TAG, "onResponse: Status Code: " + responseCode);
+
+                        String Message = responseFromAPI.getMessage();
+                        String Token = responseFromAPI.getToken();
+                        String Id = String.valueOf(responseFromAPI.getUser().getId());
+                        String Name = responseFromAPI.getUser().getName();
+                        String Email = responseFromAPI.getUser().getEmail();
+                        String Phone = String.valueOf(responseFromAPI.getUser().getPhone());
+                        String PayId = String.valueOf(responseFromAPI.getUser().getPay_id());
+                        Boolean Verified = responseFromAPI.getUser().getVerified();
+                        Boolean is_authenticated = responseFromAPI.getUser().getIs_authenticated();
+                        String AccountType = responseFromAPI.getUser().getAccount_type();
+                        String ImageUrl = responseFromAPI.getUser().getImage();
+
+                        Log.d(TAG, "onResponse: Token Updated. ");
+
+                        UserSessionManager userSessionManager = new UserSessionManager(Login.this);
+
+                        userSessionManager.updateUserAllInfo(Token, Id, Name, Email, Phone, PayId, Verified, is_authenticated, AccountType, ImageUrl);
+
+
+                        // this method is called when we get response from our api.
+                        Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
+
+                        //todo update login information
+                        Intent intent = new Intent(Login.this, Home.class);
+                        Log.d(TAG, "onResponse: Token: " + Token);
+                        Log.d(TAG, "onResponse: User Id: " + Id);
+                        viewLoadingAnimation.showLoading(false);
+                        startActivity(new Intent(Login.this, Home.class));
+                        finish();
+
+                    } else if (responseCode == 200 || responseCode == 422) {
+                        Log.d(TAG, "onResponse: Status Code: " + responseCode);
+                        String Message = responseFromAPI.getMessage();
+                        Toast.makeText(Login.this, Message, Toast.LENGTH_SHORT).show();
+
+                        viewLoadingAnimation.showLoading(false);
+                    }
+                } else {
+                    Log.d(TAG, "onResponse: Not successful: ");
+
+                    // this method is called when we get response from our api.
+                    Toast.makeText(Login.this, "Check your credentials and. \n Try again.", Toast.LENGTH_SHORT).show();
+
+                    viewLoadingAnimation.showLoading(false);
+                }
+
+//                String responseString = "Response Code : " + response.code() + "\nMessage : " + responseFromAPI.getMessage() + "\n" + "Token : " + responseFromAPI.getToken()+ "\n" + "Name : " + responseFromAPI.getUser().getName();
+
+                // below line we are setting our
+                // string to our text view.
+//                ((TextView)findViewById(R.id.textView)).setText(responseString);
+
+
+            }
+
+            @Override
+            public void onFailure(Call<UserLoginResponse> call, Throwable t) {
+                // setting text to our text view when
+                // we get error response from API.
+                Log.e(TAG, "onFailure: " + t.getMessage());
+//                responseTV.setText("Error found is : " + t.getMessage());
+                viewLoadingAnimation.showLoading(false);
+            }
+        });
+    }
+}

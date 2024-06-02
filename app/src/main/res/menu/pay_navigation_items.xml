@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_home"
+        android:icon="@drawable/home_icon"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/action_history"
+        android:enabled="true"
+        android:icon="@drawable/history_icon"
+
+        android:title="@string/history" />
+    <item
+        android:id="@+id/action_notification"
+        android:enabled="true"
+        android:icon="@drawable/bell_notification_icon"
+        android:title="@string/notification" />
+
+    <item
+        android:id="@+id/action_wallet"
+        android:icon="@drawable/wallet_icon"
+        android:title="@string/wallet" />
+</menu>

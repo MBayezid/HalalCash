@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+
+    tools:context=".pay.PayActivity">
+
+    <LinearLayout
+        android:id="@+id/home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        android:weightSum="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:id="@+id/home_fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2">
+
+            <include layout="@layout/pay_home_fragment" />
+
+        </FrameLayout>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            app:itemActiveIndicatorStyle="@color/transparent"
+            app:itemIconSize="31dp"
+            app:itemIconTint="@color/bottom_nav_color_selector"
+            app:itemRippleColor="#FFCF23"
+            android:background="@color/gray"
+            app:itemTextAppearanceActive="@font/roboto_bold"
+            app:itemTextAppearanceInactive="@font/roboto_thin"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/pay_navigation_items" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

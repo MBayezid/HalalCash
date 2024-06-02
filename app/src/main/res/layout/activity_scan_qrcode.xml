@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".QRCodeActivity.ScanQRCodeActivity"
+    >
+
+    <com.mb_lab.mbviewlib.QRCodeUtility.view.QRCodeScannerView
+        android:id="@+id/scanner_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"  />
+    <!--    <com.mb_lab.playground.ScannerActivity.view.PointsOverlayView-->
+    <!--        android:id="@+id/cover_view"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        />-->
+
+
+    <com.mb_lab.mbviewlib.QRCodeUtility.view.QRCoverView
+        android:id="@+id/cover_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cornerColor="@color/color_outside_bg"
+        app:cornerLength="16dp"
+        app:cornerOutside="false"
+        app:cornerWidth="3dp"
+        app:laserColor="@color/color_laser"
+        app:laserVisible="true"
+        app:scanRectHeight="150dp"
+        app:scanRectWidth="150dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:weightSum="3">
+    <ImageView
+        android:id="@+id/backBtn"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:src="@drawable/arrow_left_icon"/>
+    <TextView
+        android:layout_weight="3"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Scan to Pay"
+        android:textColor="@color/white"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+    <ImageView
+         android:visibility="invisible"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:src="@drawable/arrow_left_icon"/>
+</LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+
+        </Space>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="30dp"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/myQrCode"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:src="@drawable/pay_scan_icon" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    android:text="My QR Code"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/uploadQrCode"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:src="@drawable/pay_send_icon" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    android:text="Upload QR Code"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

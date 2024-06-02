@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_home"
+        android:icon="@drawable/home_icon"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/action_market"
+        android:enabled="true"
+        android:icon="@drawable/market_icon"
+
+        android:title="@string/market" />
+    <item
+        android:id="@+id/action_trend"
+        android:enabled="true"
+        android:icon="@drawable/trend_icon"
+        android:title="@string/trend" />
+    <item
+        android:id="@+id/action_future"
+        android:enabled="true"
+        android:icon="@drawable/future_icon"
+        android:title="@string/future" />
+    <item
+        android:id="@+id/action_wallet"
+        android:icon="@drawable/wallet_icon"
+        android:title="@string/wallet" />
+</menu>

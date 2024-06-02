@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission
+        android:name="android.permission.CAMERA"
+        tools:ignore="PermissionImpliesUnsupportedChromeOsHardware" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Base.Theme.HalalCash"
+        tools:targetApi="31">
+        <activity
+            android:name=".P2P.BuySellActions.ConfirmPayPin"
+            android:exported="false" />
+        <activity
+            android:name=".home.homeProfile.security.ChangeUserId_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".home.homeProfile.security.ChangeUserID_ScrollingActivity"
+            android:exported="false"
+            android:label="@string/title_activity_change_user_id_scrolling"
+            android:theme="@style/Base.Theme.HalalCash.NoActionBar" />
+        <activity
+            android:name=".P2P.BuySellActions.Buy_Sell_Successfull_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".pay.payGift.PayGiftActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.homeNotification.HomeNotificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".resetPassword.SetNewPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".deposit.DepositActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.homeProfile.security.HomeProfile_SecurityActivity"
+            android:exported="false" />
+        <activity
+            android:name=".P2P.BuySellActions.Buy_Sell_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".NID_Verification.VerificationActivityMain"
+            android:exported="false" />
+        <activity
+            android:name=".QRCodeActivity.AddInfoToQRCode"
+            android:exported="false" />
+        <activity
+            android:name=".P2P.CreateAds.PostNormalAds"
+            android:exported="false" />
+        <activity
+            android:name=".QRCodeActivity.MyQRCodeMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".QRCodeActivity.ScanQRCodeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".pay.PaySend.PaySend_Successful"
+            android:exported="false" />
+        <activity
+            android:name=".resetPassword.OTPVerification"
+            android:exported="false" />
+        <activity
+            android:name=".PayPin.ResetPayPin0"
+            android:exported="false" />
+        <activity
+            android:name=".PayPin.PayPin0"
+            android:exported="false" />
+        <activity
+            android:name=".pay.PaySend.PaySend_2"
+            android:exported="false" />
+        <activity
+            android:name=".Registration_Verification.VerificationAccount"
+            android:exported="false" />
+        <activity
+            android:name=".resetPassword.chooseVerificationOption"
+            android:exported="false" />
+        <activity
+            android:name=".mobileTopUp.MobileTopUpHistory"
+            android:exported="false" />
+        <activity
+            android:name=".mobile_top_up.MobileTopUp"
+            android:exported="false" />
+        <activity
+            android:name=".sendCash.SendCash"
+            android:exported="false" />
+        <activity
+            android:name=".pay.PayProfile"
+            android:exported="false" />
+        <activity
+            android:name=".pay.PaySend.PaySend"
+            android:exported="false" />
+        <activity
+            android:name=".P2P.P2PActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.homeProfile.HomeProfile"
+            android:exported="false" />
+        <activity
+            android:name=".pay.PayActivity"
+            android:exported="true" />
+        <activity
+            android:name=".resetPassword.AccountRecovery"
+            android:exported="false" />
+        <activity
+            android:name=".Registration_Verification.Registration"
+            android:exported="false" />
+        <activity
+            android:name=".login.Login"
+            android:exported="false" />
+        <activity
+            android:name=".home.Home"
+            android:exported="true" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

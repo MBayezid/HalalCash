@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:padding="20dp"
+     >
+
+    <ImageView
+        android:id="@+id/backBtn"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/arrow_left_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Enter Your Pay PIN"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backBtn" />
+
+    <EditText
+        android:id="@+id/editPin1"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:background="@drawable/bdt_bg"
+        android:gravity="center"
+        android:inputType="number"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/editPin2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editPin2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/editPin2"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:background="@drawable/bdt_bg"
+        android:gravity="center"
+        android:inputType="number"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="35sp"
+
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/editPin3"
+        app:layout_constraintEnd_toStartOf="@+id/editPin3"
+        app:layout_constraintStart_toEndOf="@+id/editPin1"
+        app:layout_constraintTop_toTopOf="@+id/editPin3"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <EditText
+        android:id="@+id/editPin3"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/bdt_bg"
+        android:gravity="center"
+        android:inputType="number"
+        android:text=""
+        android:textColor="@color/white"
+
+
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.474"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView32" />
+
+    <EditText
+        android:id="@+id/editPin4"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="14dp"
+        android:background="@drawable/bdt_bg"
+        android:gravity="center"
+        android:inputType="number"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/editPin3"
+        app:layout_constraintEnd_toStartOf="@+id/editPin5"
+        app:layout_constraintHorizontal_bias="0.222"
+        app:layout_constraintStart_toEndOf="@+id/editPin3"
+        app:layout_constraintTop_toTopOf="@+id/editPin3"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/editPin5"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:background="@drawable/bdt_bg"
+        android:gravity="center"
+        android:inputType="number"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/editPin4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editPin4"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="I forget my pay pin. "
+        android:textColor="#7A8696"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editPin1" />
+
+    <TextView
+        android:id="@+id/textView34"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset it now!"
+        android:textColor="@color/yellow"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textView33"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView33"
+        app:layout_constraintTop_toTopOf="@+id/textView33"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textViewContinue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="88dp"
+        android:background="@drawable/bg_edit_text"
+        android:backgroundTint="@color/yellow"
+        android:backgroundTintMode="add"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="15dp"
+        android:text="Confirm"
+        android:textColor="@color/black"
+        android:textColorHint="#72798C"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

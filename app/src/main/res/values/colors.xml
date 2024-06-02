@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#020202</color>
+    <color name="transparent_black">#8B21252E</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="app_gb_color">#020202</color>
+    <color name="gray">#FF21252E</color>
+    <color name="transparent">#00000000</color>
+    <color name="yellow">#FFCF23</color>
+
+    <color name="loading_foreground_color">#65747578</color>
+    <color name="loading_foreground_color_none">#00747578</color>
+    <color name="gray_txt">#7A8696</color>
+
+
+</resources>

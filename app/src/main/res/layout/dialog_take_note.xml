@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+
+    android:background="@color/gray"
+    android:backgroundTintMode="src_in"
+
+    android:elevation="20dp"
+    android:minWidth="400dp"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:id="@+id/top_nav_menu"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center"
+            android:text="Add Note"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:rotation="45"
+            android:src="@drawable/plus_icon" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout18"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+
+        android:background="@drawable/item_bg_strock"
+
+        android:backgroundTint="@color/black"
+        android:backgroundTintMode="add"
+        android:gravity="left"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+
+        android:paddingTop="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_nav_menu">
+
+        <EditText
+            android:id="@+id/editTxtNote"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            android:gravity="start"
+            android:hint="Please input your note"
+            android:autoSizeTextType="uniform"
+            android:minHeight="168dp"
+            android:textColor="@color/white"
+            android:textColorHint="#72798C"
+            android:textSize="20sp"
+            android:maxLength="100"
+            android:inputType="text|number|date"
+            android:lineSpacingMultiplier="10"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/noteLimit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="0/100"
+            android:textColor="#72798C"
+            android:textSize="16sp"
+            android:textStyle="normal" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textViewAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bg_edit_text"
+        android:backgroundTint="@color/yellow"
+        android:backgroundTintMode="add"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="15dp"
+        android:text="ADD"
+        android:textColor="@color/black"
+        android:textColorHint="#72798C"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout18" />
+</androidx.constraintlayout.widget.ConstraintLayout>
