@@ -214,7 +214,7 @@ public interface RetrofitAPI {
     Call<SimpleResponse> createPostForUpdateUserID_3(@Header("Authorization") String TOKEN, @Query("user_id") String user_id, @Query("user_id_type") String user_id_type, @Query("new_user_id") String new_user_id);
 
     @Headers({"Content-Type: application/json;charset=UTF-8"})
-    @POST(Constants.POST_DELETE_USER_ACCOUNT_PERMANENTLY_URL)
+    @GET(Constants.POST_DELETE_USER_ACCOUNT_PERMANENTLY_URL)
     Call<SimpleResponse> createPostForDeleteAccount(@Header("Authorization") String TOKEN);
 
 

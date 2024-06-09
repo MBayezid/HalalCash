@@ -125,6 +125,7 @@ public class HomeProfile extends AppCompatActivity {
         findViewById(R.id.linearLayout16).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                viewLoadingAnimation.showLoading(true);
                 requestAccountDeletion();
             }
         });
@@ -185,56 +186,11 @@ public class HomeProfile extends AppCompatActivity {
 
     }
 
-    private void requestAccountDeletion() {
-        viewLoadingAnimation.showLoading(true);
-        Log.d(TAG, "account deletion: Started..");
-        // below line is to create an instance for our retrofit api class.
-        RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
-
-        // passing data from our text fields to our modal class.
-
-
-        // calling a method to create a post and passing our modal class.
-        Call<SimpleResponse> call = retrofitAPI.createPostForDeleteAccount("Bearer " + new UserSessionManager(HomeProfile.this).getToken());
-
-        // on below line we are executing our method.
-        call.enqueue(new Callback<SimpleResponse>() {
-            @Override
-            public void onResponse(Call<SimpleResponse> call, Response<SimpleResponse> response) {
-                Log.d(TAG, "onResponse: successful: ");
-                Log.d(TAG, "onResponse: responseCode: " + response.code());
-
-                if (response.isSuccessful()) {
-                    Log.d(TAG, "onResponse: Account deletion successful: ");
-                    new ResetUserInfo(HomeProfile.this);
-                    viewLoadingAnimation.showLoading(false);
-                    startActivity(new Intent(HomeProfile.this, SplashActivity.class));
-                } else {
-                    Log.d(TAG, "onResponse:   Account deletion Not successful: ");
-
-                    // this method is called when we get response from our api.
-                    Toast.makeText(HomeProfile.this, "Check your credentials and. \n Try again.", Toast.LENGTH_SHORT).show();
-                    viewLoadingAnimation.showLoading(false);
-
-                }
-
-
-            }
-
-            @Override
-            public void onFailure(Call<SimpleResponse> call, Throwable t) {
-                // setting text to our text view when
-                // we get error response from API.
-                Log.e(TAG, "onFailure: " + t.getMessage());
-                Toast.makeText(HomeProfile.this, "Server connection failed.\nTry again later.", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-    }
 
     private void uploaderDialog() {
         dialog = new Dialog(HomeProfile.this);
         dialog.setCancelable(true);
+
         dialog.setContentView(R.layout.dialog_edit_home_profile_info);
 
 //        new GetBitmapFromUrl(HomeProfile.this, TAG).preLoadImageFromUrlAndLoad(userSessionManager.getImageUrl(), dialog.findViewById(R.id.imageViewProfile));
@@ -333,6 +289,54 @@ public class HomeProfile extends AppCompatActivity {
         }
         return retrofit;
 
+    }
+
+    private void requestAccountDeletion() {
+
+        Log.d(TAG, "account deletion: Started..");
+        Retrofit retrofit = CreateRetrofitClient();
+        // below line is to create an instance for our retrofit api class.
+        RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
+
+        // passing data from our text fields to our modal class.
+
+
+        // calling a method to create a post and passing our modal class.
+        Call<SimpleResponse> call = retrofitAPI.createPostForDeleteAccount("Bearer " + new UserSessionManager(HomeProfile.this).getToken());
+
+        // on below line we are executing our method.
+        call.enqueue(new Callback<SimpleResponse>() {
+            @Override
+            public void onResponse(Call<SimpleResponse> call, Response<SimpleResponse> response) {
+//                Log.d(TAG, "onResponse: successful: ");
+                Log.d(TAG, "onResponse: responseCode: " + response.code());
+
+                if (response.isSuccessful()) {
+                    Log.d(TAG, "onResponse: Account deletion successful: ");
+                    new ResetUserInfo(HomeProfile.this);
+                    viewLoadingAnimation.showLoading(false);
+                    startActivity(new Intent(HomeProfile.this, SplashActivity.class));
+                } else {
+                    Log.d(TAG, "onResponse:   Account deletion Not successful: ");
+
+                    // this method is called when we get response from our api.
+                    Toast.makeText(HomeProfile.this, "Check your credentials and. \n Try again.", Toast.LENGTH_SHORT).show();
+                    viewLoadingAnimation.showLoading(false);
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<SimpleResponse> call, Throwable t) {
+                // setting text to our text view when
+                // we get error response from API.
+                Log.e(TAG, "onFailure: " + t.getMessage());
+                Toast.makeText(HomeProfile.this, "Server connection failed.\nTry again later.", Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 
     private void updateImage(File file) {
