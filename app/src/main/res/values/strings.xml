@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HalalCash</string>
+    <string name="app_name">HCash</string>
     <string name="pay">Pay</string>
     <string name="p2p">P2P</string>
     <string name="sendCash">Send Cash</string>

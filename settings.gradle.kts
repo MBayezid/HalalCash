@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "HalalCash"
+rootProject.name = "HCash"
 include(":app")
 include(":app:mbViewLib")
