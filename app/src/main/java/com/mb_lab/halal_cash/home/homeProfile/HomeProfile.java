@@ -1,6 +1,7 @@
 package com.mb_lab.halal_cash.home.homeProfile;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -13,6 +14,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +27,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputEditText;
 import com.mb_lab.halal_cash.ApiCalls.CommonApiRequest.GetUserInformation;
 import com.mb_lab.halal_cash.Constants;
@@ -39,7 +42,9 @@ import com.mb_lab.halal_cash.ApiCalls.CommonApiRequest.GetBitmapFromUrl;
 import com.mb_lab.halal_cash.Util.MailSupport;
 import com.mb_lab.halal_cash.Util.ResetUserInfo;
 import com.mb_lab.halal_cash.home.homeProfile.security.HomeProfile_SecurityActivity;
+import com.mb_lab.halal_cash.pay.PaySend.PaySend_2;
 import com.mb_lab.halal_cash.pay.payGift.PayGiftActivity;
+import com.mb_lab.halal_cash.policy.PrivacyPolicy;
 import com.mb_lab.mbviewlib.ImageViewManagment.RoundImageView;
 
 import java.io.File;
@@ -114,6 +119,13 @@ public class HomeProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(HomeProfile.this, PayGiftActivity.class));
+
+            }
+        });
+        findViewById(R.id.linearLayoutPrivacyPolicy).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeProfile.this, PrivacyPolicy.class));
             }
         });
         findViewById(R.id.btnBack).setOnClickListener(new View.OnClickListener() {
@@ -125,8 +137,8 @@ public class HomeProfile extends AppCompatActivity {
         findViewById(R.id.linearLayout16).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewLoadingAnimation.showLoading(true);
-                requestAccountDeletion();
+                createWorningAlartDialogForUser();
+
             }
         });
         findViewById(R.id.linearLayout11).setOnClickListener(new View.OnClickListener() {
@@ -183,6 +195,41 @@ public class HomeProfile extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    private void createWorningAlartDialogForUser() {
+
+        BottomSheetDialog dialog = new BottomSheetDialog( this);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.custom_dialog_for_user_account_deletion);
+
+        dialog.findViewById(R.id.btn_confirm_delete).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new CountDownTimer(10000, 1000) {
+                    public void onTick(long millisUntilFinished) {
+                        // Update UI (e.g., display remaining time)
+                        // ...
+                        ((TextView)dialog.findViewById(R.id.message)).setText("This will take effect after "+(millisUntilFinished/1000)+" secs." );
+                    }
+
+                    public void onFinish() {
+                        // Timer finished, perform any necessary actions
+                        // ...
+//                    viewLoadingAnimation.showLoading(true);
+//                    requestAccountDeletion();
+                        ((TextView)dialog.findViewById(R.id.message)).setText("Your Account will be deleted shortly.");
+                    }
+                }.start();
+            }
+        });
+
+            // Start a 10-second countdown timer
+
+
+        dialog.create();
+        dialog.show();
 
     }
 

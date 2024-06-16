@@ -474,10 +474,8 @@
                 android:rotation="-90"
                 android:src="@drawable/drop_down_arrow"
                 app:tint="@color/white" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout16"
+        </LinearLayout> <LinearLayout
+            android:id="@+id/linearLayoutPrivacyPolicy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -486,6 +484,36 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout15">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Privacy Policy"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="normal" />
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                android:rotation="-90"
+                android:src="@drawable/drop_down_arrow"
+                app:tint="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutPrivacyPolicy">
 
             <TextView
                 android:layout_width="match_parent"
@@ -500,6 +528,7 @@
                 android:layout_width="48dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:visibility="invisible"
                 android:rotation="-90"
                 android:src="@drawable/drop_down_arrow"
                 app:tint="@color/white" />

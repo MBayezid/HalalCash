@@ -10,7 +10,7 @@ android {
         applicationId = "com.mb_lab.halal_cash"
         minSdk = 24
         targetSdk = 33
-        versionCode = 2
+        versionCode = 3
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -50,6 +50,8 @@ dependencies {
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.5.0")
     implementation("androidx.activity:activity:1.9.0")
+
+
 
     implementation("com.google.android.material:material:1.12.0")
 

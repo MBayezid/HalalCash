@@ -30,8 +30,6 @@ public class Constants {
     public static final String POST_RESET_PASSWORD_2_VERIFY_OTP_URL = "api/reset-password/verify";
     public static final String POST_RESET_PASSWORD_3_SET_PASSWORD_URL = "api/reset-password/set-password";
 
-
-
     public static final String GET_ALL_HOME_NOTIFICATION_URL = "api/home-notification";
     public static final String GET_ALL_GIFTS_URL = "api/gifts";
 

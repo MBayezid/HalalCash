@@ -26,6 +26,7 @@
     <string name="ads">Ads</string>
     <string name="loading">Loading..</string>
     <string name="title_activity_change_user_id_scrolling">ChangeUserID_ScrollingActivity</string>
+
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
@@ -116,4 +117,11 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+
+
+    <string name="warning">Warning</string>
+    <string name="delete_warning">This action will permanently delete all your user information from our service. Are you sure you want to proceed?</string>
+    <string name="confirm_delete">Confirm Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="cancel_delete">Cancel</string>
 </resources>

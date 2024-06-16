@@ -311,6 +311,7 @@
                 android:src="@drawable/bg_edit_text" />
 
             <TextView
+                android:id="@+id/gotoPrivicypolicy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"

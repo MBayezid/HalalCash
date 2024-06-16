@@ -19,7 +19,7 @@ public class MailSupport {
         emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]
 
                 {
-                        "halalitnetwork@gmail.com"
+                        "support@halalcash.mblab.tech"
                 });
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Halal Cash Support Center");
         emailIntent.putExtra(Intent.EXTRA_TEXT, "Explain how we can serve you.......");
@@ -55,7 +55,7 @@ public class MailSupport {
         emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]
 
                 {
-                        "halalitnetwork@gmail.com"
+                        "support@halalcash.mblab.tech"
                 });
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Halal Cash Deposit");
         emailIntent.putExtra(Intent.EXTRA_TEXT, String.format(" Hi there halal cash support team.\nMy Pay Id : %s.\nI have deposited %s BDT.\nAgent Name : %s.\nAC NO : %s.\nPayment Method : %s.",userPayId,amount,agentName,agentAccountNo,paymentMethod));

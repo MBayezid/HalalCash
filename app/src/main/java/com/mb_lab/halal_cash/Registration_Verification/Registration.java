@@ -20,6 +20,7 @@ import com.mb_lab.halal_cash.R;
 import com.mb_lab.halal_cash.RetrofitAPI;
 import com.mb_lab.halal_cash.Util.InputInformationValidation;
 import com.mb_lab.halal_cash.login.Login;
+import com.mb_lab.halal_cash.policy.PrivacyPolicy;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,7 +41,14 @@ public class Registration extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
         viewLoadingAnimation = new ViewLoadingAnimation(Registration.this);
 
-        findViewById(R.id.postRegistrationData).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.gotoPrivicypolicy).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Registration.this, PrivacyPolicy.class));
+
+
+            }
+        });        findViewById(R.id.postRegistrationData).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Registration.this, Login.class));
