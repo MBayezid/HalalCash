@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -137,7 +138,7 @@ public class HomeProfile extends AppCompatActivity {
         findViewById(R.id.linearLayout16).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createWorningAlartDialogForUser();
+                createWarningAlartDialogForUser();
 
             }
         });
@@ -177,10 +178,6 @@ public class HomeProfile extends AppCompatActivity {
 //                https://halalcash.net/storage/26/IMG-20240406-WA0002.jpg
             }
         });
-
-
-        new GetBitmapFromUrl(HomeProfile.this, TAG).preLoadImageFromUrlAndLoad(userSessionManager.getImageUrl(), findViewById(R.id.imageView11));
-
         findViewById(R.id.imageView11).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -195,37 +192,47 @@ public class HomeProfile extends AppCompatActivity {
             }
         });
 
-
+        new GetBitmapFromUrl(HomeProfile.this, TAG).preLoadImageFromUrlAndLoad(userSessionManager.getImageUrl(), findViewById(R.id.imageView11));
     }
 
-    private void createWorningAlartDialogForUser() {
+    private void createWarningAlartDialogForUser() {
 
-        BottomSheetDialog dialog = new BottomSheetDialog( this);
+        BottomSheetDialog dialog = new BottomSheetDialog(this);
         dialog.setCancelable(true);
         dialog.setContentView(R.layout.custom_dialog_for_user_account_deletion);
+        ((Button) dialog.findViewById(R.id.btn_confirm_delete)).setVisibility(View.GONE);
+        new CountDownTimer(10000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                // Update UI (e.g., display remaining time)
+                // ...
 
-        dialog.findViewById(R.id.btn_confirm_delete).setOnClickListener(new View.OnClickListener() {
+                ((TextView) dialog.findViewById(R.id.message)).setText(getText(R.string.delete_warning) + "\n\n(This will take effect after " + (millisUntilFinished / 1000) + " secs.)");
+
+            }
+
+            public void onFinish() {
+                // Timer finished, perform any necessary actions
+                ((TextView) dialog.findViewById(R.id.message)).setText(getText(R.string.delete_warning) + "\n\n(Long Press Confirm Delete to continue.)");
+                ((Button) dialog.findViewById(R.id.btn_confirm_delete)).setVisibility(View.VISIBLE);
+            }
+        }.start();
+        dialog.findViewById(R.id.btn_confirm_delete).setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onClick(View v) {
-                new CountDownTimer(10000, 1000) {
-                    public void onTick(long millisUntilFinished) {
-                        // Update UI (e.g., display remaining time)
-                        // ...
-                        ((TextView)dialog.findViewById(R.id.message)).setText("This will take effect after "+(millisUntilFinished/1000)+" secs." );
-                    }
-
-                    public void onFinish() {
-                        // Timer finished, perform any necessary actions
-                        // ...
-//                    viewLoadingAnimation.showLoading(true);
-//                    requestAccountDeletion();
-                        ((TextView)dialog.findViewById(R.id.message)).setText("Your Account will be deleted shortly.");
-                    }
-                }.start();
+            public boolean onLongClick(View v) {
+                viewLoadingAnimation.showLoading(true);
+                requestAccountDeletion();
+                return false;
             }
         });
 
-            // Start a 10-second countdown timer
+        dialog.findViewById(R.id.btn_cancel_delete).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.cancel();
+            }
+        });
+
+        // Start a 10-second countdown timer
 
 
         dialog.create();
