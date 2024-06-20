@@ -1,4 +1,4 @@
-package com.mb_lab.halal_cash.mobile_top_up;
+package com.mb_lab.halal_cash.mobileTopUp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.mb_lab.halal_cash.R;
-import com.mb_lab.halal_cash.mobileTopUp.MobileTopUpHistory;
 
 public class MobileTopUp extends AppCompatActivity {
 

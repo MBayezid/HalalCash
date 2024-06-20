@@ -173,7 +173,6 @@ public class HomeProfile extends AppCompatActivity {
             public void onClick(View v) {
 
                 uploaderDialog();
-//                https://halalcash.net/storage/26/IMG-20240406-WA0002.jpg
             }
         });
         findViewById(R.id.imageView11).setOnClickListener(new View.OnClickListener() {

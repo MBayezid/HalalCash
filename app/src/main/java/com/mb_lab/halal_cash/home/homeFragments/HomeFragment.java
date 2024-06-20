@@ -23,7 +23,7 @@ import com.mb_lab.halal_cash.QRCodeActivity.ScanQRCodeActivity;
 
 import com.mb_lab.halal_cash.deposit.DepositActivity;
 import com.mb_lab.halal_cash.home.homeNotification.HomeNotificationActivity;
-import com.mb_lab.halal_cash.mobile_top_up.MobileTopUp;
+import com.mb_lab.halal_cash.mobileTopUp.MobileTopUp;
 import com.mb_lab.halal_cash.P2P.P2PActivity;
 import com.mb_lab.halal_cash.SessionManagers.UserSessionManager;
 import com.mb_lab.halal_cash.pay.PayActivity;

@@ -97,7 +97,7 @@
             android:name=".mobileTopUp.MobileTopUpHistory"
             android:exported="false" />
         <activity
-            android:name=".mobile_top_up.MobileTopUp"
+            android:name=".mobileTopUp.MobileTopUp"
             android:exported="false" />
         <activity
             android:name=".sendCash.SendCash"
