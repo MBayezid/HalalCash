@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -21,7 +22,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="2">
+            android:weightSum="2"
+            tools:ignore="UseCompoundDrawables">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -36,7 +38,7 @@
                 android:contentDescription="@string/warning"
                 android:gravity="center"
                 android:text="@string/attention_high"
-                android:textColor="@color/red"
+                android:textColor="#D32F2F"
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -53,6 +55,7 @@
             android:textStyle="bold" />
 
         <LinearLayout
+            style="?android:attr/buttonBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -60,6 +63,7 @@
 
             <Button
                 android:id="@+id/btn_cancel_delete"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -67,18 +71,21 @@
                 android:text="@string/cancel_delete"
                 android:textColor="@color/yellow"
                 android:textStyle="bold"
-                android:visibility="visible" />
+                android:visibility="visible"
+                tools:ignore="VisualLintButtonSize" />
 
             <Button
                 android:id="@+id/btn_confirm_delete"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_weight="1"
                 android:text="@string/confirm_delete"
-                android:textColor="@color/red"
+                android:textColor="#D32F2F"
                 android:textStyle="bold"
-                android:visibility="visible" />
+                android:visibility="visible"
+                tools:ignore="VisualLintButtonSize" />
         </LinearLayout>
 
 
