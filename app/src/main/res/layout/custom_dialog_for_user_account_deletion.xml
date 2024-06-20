@@ -30,12 +30,12 @@
                 android:src="@drawable/icon_security" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/warning"
                 android:gravity="center"
-                android:text="Attention (High)"
+                android:text="@string/attention_high"
                 android:textColor="@color/red"
                 android:textSize="20sp"
                 android:textStyle="bold" />

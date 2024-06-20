@@ -124,4 +124,5 @@
     <string name="confirm_delete">Confirm Delete</string>
     <string name="cancel">Cancel</string>
     <string name="cancel_delete">Cancel</string>
+    <string name="attention_high">Attention (High)</string>
 </resources>

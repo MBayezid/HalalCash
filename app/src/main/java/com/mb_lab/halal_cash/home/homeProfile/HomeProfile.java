@@ -1,11 +1,5 @@
 package com.mb_lab.halal_cash.home.homeProfile;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -25,11 +19,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputEditText;
+import com.mb_lab.halal_cash.ApiCalls.CommonApiRequest.GetBitmapFromUrl;
 import com.mb_lab.halal_cash.ApiCalls.CommonApiRequest.GetUserInformation;
 import com.mb_lab.halal_cash.Constants;
 import com.mb_lab.halal_cash.CustomeDialogs.ViewLoadingAnimation;
@@ -39,11 +39,9 @@ import com.mb_lab.halal_cash.R;
 import com.mb_lab.halal_cash.RetrofitAPI;
 import com.mb_lab.halal_cash.SessionManagers.UserSessionManager;
 import com.mb_lab.halal_cash.SplashActivity;
-import com.mb_lab.halal_cash.ApiCalls.CommonApiRequest.GetBitmapFromUrl;
 import com.mb_lab.halal_cash.Util.MailSupport;
 import com.mb_lab.halal_cash.Util.ResetUserInfo;
 import com.mb_lab.halal_cash.home.homeProfile.security.HomeProfile_SecurityActivity;
-import com.mb_lab.halal_cash.pay.PaySend.PaySend_2;
 import com.mb_lab.halal_cash.pay.payGift.PayGiftActivity;
 import com.mb_lab.halal_cash.policy.PrivacyPolicy;
 import com.mb_lab.mbviewlib.ImageViewManagment.RoundImageView;
