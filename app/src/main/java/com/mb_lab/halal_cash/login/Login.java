@@ -76,7 +76,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Login.this, AccountRecovery.class);
-                intent.putExtra(changePasswordConstants.REQUEST_FOR,changePasswordConstants.REQUEST_FOR_FORGET_PASSWORD);
+                intent.putExtra(changePasswordConstants.REQUEST_FOR, changePasswordConstants.REQUEST_FOR_FORGET_PASSWORD);
                 startActivity(intent);
             }
         });
@@ -92,9 +92,6 @@ public class Login extends AppCompatActivity {
 
 
     public void postLoginData() {
-        viewLoadingAnimation.showLoading(true);
-
-
         String UserIdString = ((EditText) findViewById(R.id.userId)).getText().toString();
         String UserPasswordString = ((EditText) findViewById(R.id.userPassword)).getText().toString();
         //TODO  check for valod email or contact and password
@@ -103,15 +100,6 @@ public class Login extends AppCompatActivity {
 
         //todo check for user_id_type
         String user_id_type = new InputInformationValidation().getUserIdType(UserIdString);
-
-//        if (UserIdString.contains("@")) {
-//            user_id_type = "email";
-//            Log.d(TAG, "user_id_type: " + user_id_type);
-//
-//        } else {
-//            user_id_type = "phone";
-//            Log.d(TAG, "user_id_type: " + user_id_type);
-//        }
         if (user_id_type != null) {
             postData(UserIdString, user_id_type, UserPasswordString);
         }
@@ -120,7 +108,7 @@ public class Login extends AppCompatActivity {
     private void postData(@NonNull String user_id, @NonNull String user_id_type, @NonNull String password) {
 
         // below line is for displaying our progress bar.
-//        loadingPB.setVisibility(View.VISIBLE);
+        viewLoadingAnimation.showLoading(true);
 
         // on below line we are creating a retrofit
         // builder and passing our base url
@@ -146,25 +134,14 @@ public class Login extends AppCompatActivity {
             @Override
             public void onResponse(Call<UserLoginResponse> call, Response<UserLoginResponse> response) {
                 Log.d(TAG, "onResponse: successful: ");
-                // below line is for hiding our progress bar.
-
-
-//                loadingPB.setVisibility(View.GONE);
-
-                // on below line we are setting empty text
-                // to our both edit text.
-
-
-                // we are getting response from our body
-                // and passing it to our modal class.
                 UserLoginResponse responseFromAPI = response.body();
 
                 // on below line we are getting our data from modal class and adding it to our string.
 //                assert responseFromAPI != null;
-                int responseCode = response.code();
-                if (responseFromAPI != null) {
-                    if (responseCode == 201) {
-                        Log.d(TAG, "onResponse: Status Code: " + responseCode);
+//                int responseCode = response.code();
+                Log.d(TAG, "onResponse: Status Code: " + response.code());
+
+                    if(response.isSuccessful() && responseFromAPI != null) {
 
                         String Message = responseFromAPI.getMessage();
                         String Token = responseFromAPI.getToken();
@@ -196,27 +173,16 @@ public class Login extends AppCompatActivity {
                         startActivity(new Intent(Login.this, Home.class));
                         finish();
 
-                    } else if (responseCode == 200 || responseCode == 422) {
-                        Log.d(TAG, "onResponse: Status Code: " + responseCode);
-                        String Message = responseFromAPI.getMessage();
-                        Toast.makeText(Login.this, Message, Toast.LENGTH_SHORT).show();
 
-                        viewLoadingAnimation.showLoading(false);
-                    }
                 } else {
+
                     Log.d(TAG, "onResponse: Not successful: ");
 
                     // this method is called when we get response from our api.
-                    Toast.makeText(Login.this, "Check your credentials and. \n Try again.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "Check your credentials and.\nTry again.", Toast.LENGTH_SHORT).show();
 
                     viewLoadingAnimation.showLoading(false);
                 }
-
-//                String responseString = "Response Code : " + response.code() + "\nMessage : " + responseFromAPI.getMessage() + "\n" + "Token : " + responseFromAPI.getToken()+ "\n" + "Name : " + responseFromAPI.getUser().getName();
-
-                // below line we are setting our
-                // string to our text view.
-//                ((TextView)findViewById(R.id.textView)).setText(responseString);
 
 
             }
@@ -227,6 +193,8 @@ public class Login extends AppCompatActivity {
                 // we get error response from API.
                 Log.e(TAG, "onFailure: " + t.getMessage());
 //                responseTV.setText("Error found is : " + t.getMessage());
+                // this method is called when we get response from our api.
+                Toast.makeText(Login.this, "Check your connection and.\nTry again.", Toast.LENGTH_SHORT).show();
                 viewLoadingAnimation.showLoading(false);
             }
         });
