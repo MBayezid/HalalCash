@@ -30,21 +30,25 @@ public class ConverterUtil {
     }
 
     public Float convertStringToFloat_2f(String string) {
-        try {
-            return Float.parseFloat(String.format("%.2f", string.trim()));
-        } catch (Exception exception) {
-            Log.e("ConverterUtil", "convertNumberToString: ", exception);
+        if (string!=null){
+            try {
+                return Float.parseFloat(String.format("%.2f", string.trim()));
+            } catch (Exception exception) {
+                Log.e("ConverterUtil", "convertNumberToString: ", exception);
+            }
         }
         return null;
     }
 
-    public String convertStringToString_2f(@NonNull String string) {
-        try {
-            return String.format("%.2f", Float.parseFloat(string.trim()));
+    public String convertStringToString_2f(String string) {
+       if (string!=null){
+           try {
+               return String.format("%.2f", Float.parseFloat(string.trim()));
 
-        } catch (Exception exception) {
-            Log.e("ConverterUtil", "convertStringToString_2f: ", exception);
-        }
+           } catch (Exception exception) {
+               Log.e("ConverterUtil", "convertStringToString_2f: ", exception);
+           }
+       }
         return null;
     }
 }

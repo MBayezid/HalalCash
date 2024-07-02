@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -23,12 +22,12 @@ import com.mb_lab.halal_cash.resetPassword.AccountRecovery;
 import com.mb_lab.halal_cash.resetPassword.changePasswordConstants;
 import com.mb_lab.halal_cash.home.Home;
 
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
 
 public class Login extends AppCompatActivity {
     private EditText userId, userPassword;
@@ -66,6 +65,8 @@ public class Login extends AppCompatActivity {
 
 
         findViewById(R.id.postLoginData).setOnClickListener(v -> postLoginData());
+
+
         findViewById(R.id.forgotPassword).setOnClickListener(v -> {
             Intent intent = new Intent(Login.this, AccountRecovery.class);
             intent.putExtra(changePasswordConstants.REQUEST_FOR, changePasswordConstants.REQUEST_FOR_FORGET_PASSWORD);
@@ -156,7 +157,7 @@ public class Login extends AppCompatActivity {
                     Log.d(TAG, "onResponse: Token: " + Token);
                     Log.d(TAG, "onResponse: User Id: " + Id);
                     viewLoadingAnimation.showLoading(false);
-                    startActivity(new Intent(Login.this, Home.class));
+                    startActivity(intent);
                     finish();
 
 
