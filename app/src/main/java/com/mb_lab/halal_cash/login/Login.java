@@ -81,7 +81,7 @@ public class Login extends AppCompatActivity {
         String UserIdString = ((EditText) findViewById(R.id.userId)).getText().toString();
         String UserPasswordString = ((EditText) findViewById(R.id.userPassword)).getText().toString();
 
-   
+        // check for valid email or contact and password
         Log.d(TAG, "tryLogin: userEmail: " + UserIdString);
         Log.d(TAG, "tryLogin: userPass: " + UserPasswordString);
 
