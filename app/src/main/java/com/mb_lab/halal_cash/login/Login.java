@@ -80,7 +80,8 @@ public class Login extends AppCompatActivity {
     public void postLoginData() {
         String UserIdString = ((EditText) findViewById(R.id.userId)).getText().toString();
         String UserPasswordString = ((EditText) findViewById(R.id.userPassword)).getText().toString();
-        //TODO  check for valid email or contact and password
+
+   
         Log.d(TAG, "tryLogin: userEmail: " + UserIdString);
         Log.d(TAG, "tryLogin: userPass: " + UserPasswordString);
 
