@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textAutoComplete"
                 android:textColor="@color/yellow"
-                android:text="play.console.review.team@gmail.com"
+                android:text=""
                 android:textColorHint="@color/user_id_pass_field_selector"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -139,7 +139,7 @@
                 android:inputType="textPassword"
                 android:textColor="@color/yellow"
                 android:textSize="20sp"
-                android:text="12345678PlayConsole"
+                android:text=""
                 android:textStyle="bold" />
 
         </com.google.android.material.textfield.TextInputLayout>
