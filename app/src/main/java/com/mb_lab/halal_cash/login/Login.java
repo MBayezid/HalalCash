@@ -21,7 +21,6 @@ import com.mb_lab.halal_cash.SessionManagers.UserSessionManager;
 import com.mb_lab.halal_cash.Util.InputInformationValidation;
 import com.mb_lab.halal_cash.resetPassword.AccountRecovery;
 import com.mb_lab.halal_cash.resetPassword.changePasswordConstants;
-import com.mb_lab.halal_cash.resetPassword.chooseVerificationOption;
 import com.mb_lab.halal_cash.home.Home;
 
 
@@ -66,26 +65,13 @@ public class Login extends AppCompatActivity {
         }
 
 
-        findViewById(R.id.postLoginData).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                postLoginData();
-            }
+        findViewById(R.id.postLoginData).setOnClickListener(v -> postLoginData());
+        findViewById(R.id.forgotPassword).setOnClickListener(v -> {
+            Intent intent = new Intent(Login.this, AccountRecovery.class);
+            intent.putExtra(changePasswordConstants.REQUEST_FOR, changePasswordConstants.REQUEST_FOR_FORGET_PASSWORD);
+            startActivity(intent);
         });
-        findViewById(R.id.forgotPassword).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Login.this, AccountRecovery.class);
-                intent.putExtra(changePasswordConstants.REQUEST_FOR, changePasswordConstants.REQUEST_FOR_FORGET_PASSWORD);
-                startActivity(intent);
-            }
-        });
-        findViewById(R.id.goToRegistration).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Login.this, Registration.class));
-            }
-        });
+        findViewById(R.id.goToRegistration).setOnClickListener(v -> startActivity(new Intent(Login.this, Registration.class)));
 
 
     }
@@ -94,7 +80,7 @@ public class Login extends AppCompatActivity {
     public void postLoginData() {
         String UserIdString = ((EditText) findViewById(R.id.userId)).getText().toString();
         String UserPasswordString = ((EditText) findViewById(R.id.userPassword)).getText().toString();
-        //TODO  check for valod email or contact and password
+        //TODO  check for valid email or contact and password
         Log.d(TAG, "tryLogin: userEmail: " + UserIdString);
         Log.d(TAG, "tryLogin: userPass: " + UserPasswordString);
 
@@ -137,51 +123,50 @@ public class Login extends AppCompatActivity {
                 UserLoginResponse responseFromAPI = response.body();
 
                 // on below line we are getting our data from modal class and adding it to our string.
-//                assert responseFromAPI != null;
-//                int responseCode = response.code();
+                assert responseFromAPI != null;
                 Log.d(TAG, "onResponse: Status Code: " + response.code());
 
-                    if(response.isSuccessful() && responseFromAPI != null) {
+                if ((response.isSuccessful() || response.code() == 201) && response.body() != null) {
 
-                        String Message = responseFromAPI.getMessage();
-                        String Token = responseFromAPI.getToken();
-                        String Id = String.valueOf(responseFromAPI.getUser().getId());
-                        String Name = responseFromAPI.getUser().getName();
-                        String Email = responseFromAPI.getUser().getEmail();
-                        String Phone = String.valueOf(responseFromAPI.getUser().getPhone());
-                        String PayId = String.valueOf(responseFromAPI.getUser().getPay_id());
-                        Boolean Verified = responseFromAPI.getUser().getVerified();
-                        Boolean is_authenticated = responseFromAPI.getUser().getIs_authenticated();
-                        String AccountType = responseFromAPI.getUser().getAccount_type();
-                        String ImageUrl = responseFromAPI.getUser().getImage();
+                    String Message = responseFromAPI.getMessage();
+                    String Token = responseFromAPI.getToken();
+                    String Id = String.valueOf(responseFromAPI.getUser().getId());
+                    String Name = responseFromAPI.getUser().getName();
+                    String Email = responseFromAPI.getUser().getEmail();
+                    String Phone = String.valueOf(responseFromAPI.getUser().getPhone());
+                    String PayId = String.valueOf(responseFromAPI.getUser().getPay_id());
+                    Boolean Verified = responseFromAPI.getUser().getVerified();
+                    Boolean is_authenticated = responseFromAPI.getUser().getIs_authenticated();
+                    String AccountType = responseFromAPI.getUser().getAccount_type();
+                    String ImageUrl = responseFromAPI.getUser().getImage();
 
-                        Log.d(TAG, "onResponse: Token Updated. ");
+                    Log.d(TAG, "onResponse: Token Updated. ");
 
-                        UserSessionManager userSessionManager = new UserSessionManager(Login.this);
+                    UserSessionManager userSessionManager = new UserSessionManager(Login.this);
 
-                        userSessionManager.updateUserAllInfo(Token, Id, Name, Email, Phone, PayId, Verified, is_authenticated, AccountType, ImageUrl);
+                    userSessionManager.updateUserAllInfo(Token, Id, Name, Email, Phone, PayId, Verified, is_authenticated, AccountType, ImageUrl);
 
 
-                        // this method is called when we get response from our api.
-                        Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                    // this method is called when we get response from our api.
+                    Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
 
-                        //todo update login information
-                        Intent intent = new Intent(Login.this, Home.class);
-                        Log.d(TAG, "onResponse: Token: " + Token);
-                        Log.d(TAG, "onResponse: User Id: " + Id);
-                        viewLoadingAnimation.showLoading(false);
-                        startActivity(new Intent(Login.this, Home.class));
-                        finish();
+                    //todo update login information
+                    Intent intent = new Intent(Login.this, Home.class);
+                    Log.d(TAG, "onResponse: Token: " + Token);
+                    Log.d(TAG, "onResponse: User Id: " + Id);
+                    viewLoadingAnimation.showLoading(false);
+                    startActivity(new Intent(Login.this, Home.class));
+                    finish();
 
 
                 } else {
 
                     Log.d(TAG, "onResponse: Not successful: ");
 
-                    // this method is called when we get response from our api.
-                    Toast.makeText(Login.this, "Check your credentials and.\nTry again.", Toast.LENGTH_SHORT).show();
-
                     viewLoadingAnimation.showLoading(false);
+                    // this method is called when we get response from our api.
+                    Toast.makeText(Login.this, "Credentials not matched.\nTry again.", Toast.LENGTH_SHORT).show();
+
                 }
 
 
@@ -192,10 +177,10 @@ public class Login extends AppCompatActivity {
                 // setting text to our text view when
                 // we get error response from API.
                 Log.e(TAG, "onFailure: " + t.getMessage());
+                viewLoadingAnimation.showLoading(false);
 //                responseTV.setText("Error found is : " + t.getMessage());
                 // this method is called when we get response from our api.
                 Toast.makeText(Login.this, "Check your connection and.\nTry again.", Toast.LENGTH_SHORT).show();
-                viewLoadingAnimation.showLoading(false);
             }
         });
     }

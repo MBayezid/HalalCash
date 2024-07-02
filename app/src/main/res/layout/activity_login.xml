@@ -143,7 +143,18 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <CheckBox
+            android:id="@+id/rememberMeCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Remember Me"
+            android:checked="true"
+            android:hapticFeedbackEnabled="true"
+            android:focusedSearchResultHighlightColor="@color/yellow"
 
+            android:textColor="@color/gray_txt"
+            app:layout_constraintStart_toStartOf="parent"
+            />
         <TextView
             android:id="@+id/postLoginData"
             android:layout_width="match_parent"
