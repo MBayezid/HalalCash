@@ -116,7 +116,7 @@ public class HomeFragment extends Fragment {
 
 
                 } catch (Exception e) {
-                    Log.e(TAG, "onClick: Erron on Calling Support..", e);
+                    Log.e(TAG, "onClick: Error on Calling Support..", e);
                 }
             }
         });

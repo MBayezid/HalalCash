@@ -90,6 +90,7 @@ public class Login extends AppCompatActivity {
         //todo check for user_id_type
         String user_id_type = new InputInformationValidation().getUserIdType(UserIdString);
         if (user_id_type != null) {
+
             postData(UserIdString, user_id_type, UserPasswordString);
         }
     }
@@ -121,27 +122,27 @@ public class Login extends AppCompatActivity {
         // on below line we are executing our method.
         call.enqueue(new Callback<UserLoginResponse>() {
             @Override
-            public void onResponse(Call<UserLoginResponse> call, Response<UserLoginResponse> response) {
+            public void onResponse( Call<UserLoginResponse> call, Response<UserLoginResponse> response) {
                 Log.d(TAG, "onResponse: successful: ");
-                UserLoginResponse responseFromAPI = response.body();
+//                UserLoginResponse responseFromAPI = response.body();
 
                 // on below line we are getting our data from modal class and adding it to our string.
-                assert responseFromAPI != null;
+
                 Log.d(TAG, "onResponse: Status Code: " + response.code());
 
                 if ((response.isSuccessful() || response.code() == 201) && response.body() != null) {
 
-                    String Message = responseFromAPI.getMessage();
-                    String Token = responseFromAPI.getToken();
-                    String Id = String.valueOf(responseFromAPI.getUser().getId());
-                    String Name = responseFromAPI.getUser().getName();
-                    String Email = responseFromAPI.getUser().getEmail();
-                    String Phone = String.valueOf(responseFromAPI.getUser().getPhone());
-                    String PayId = String.valueOf(responseFromAPI.getUser().getPay_id());
-                    Boolean Verified = responseFromAPI.getUser().getVerified();
-                    Boolean is_authenticated = responseFromAPI.getUser().getIs_authenticated();
-                    String AccountType = responseFromAPI.getUser().getAccount_type();
-                    String ImageUrl = responseFromAPI.getUser().getImage();
+                    String Message = response.body().getMessage();
+                    String Token =  response.body().getToken();
+                    String Id = String.valueOf( response.body().getUser().getId());
+                    String Name =  response.body().getUser().getName();
+                    String Email =  response.body().getUser().getEmail();
+                    String Phone = String.valueOf( response.body().getUser().getPhone());
+                    String PayId = String.valueOf( response.body().getUser().getPay_id());
+                    Boolean Verified =  response.body().getUser().getVerified();
+                    Boolean is_authenticated =  response.body().getUser().getIs_authenticated();
+                    String AccountType =  response.body().getUser().getAccount_type();
+                    String ImageUrl =  response.body().getUser().getImage();
 
                     Log.d(TAG, "onResponse: Token Updated. ");
 
@@ -176,7 +177,7 @@ public class Login extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<UserLoginResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<UserLoginResponse> call, @NonNull Throwable t) {
                 // setting text to our text view when
                 // we get error response from API.
                 Log.e(TAG, "onFailure: " + t.getMessage());

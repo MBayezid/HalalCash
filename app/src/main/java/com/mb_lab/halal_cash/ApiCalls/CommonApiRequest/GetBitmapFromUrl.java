@@ -31,18 +31,25 @@ public class GetBitmapFromUrl extends RetrofitClient {
     }
 
     public void preLoadImageFromUrlAndLoad(String imageUrl, View view) {
+
+        // Clearing Glide's cache
+        Glide.get(context).clearMemory();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Glide.get(context).clearDiskCache();
+            }
+        }).start();
+
+
         Glide.with(context)
                 .load(imageUrl)
+//                .load("https://images.creativefabrica.com/products/previews/2023/10/27/LH874No6w/2XLj7loRuN3Sa7nt65RxsyKSx7Y-mobile.jpg")
                 .apply(new RequestOptions().centerCrop()
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .override(100, 100)) // Adjust size as needed
-                .preload() ;
-
-
-        Glide.with(context)
-                .load(imageUrl).centerCrop()
-                .apply(new RequestOptions()
-                        .diskCacheStrategy(DiskCacheStrategy.ALL))
+                        .override(100, 100))
+                .placeholder(R.drawable.profile_round_icon)// Adjust size as needed
+                .error(R.drawable.profile_round_icon)// Adjust size as needed
                 .into((ImageView) view);
 
 

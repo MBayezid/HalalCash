@@ -150,7 +150,6 @@
         android:paddingTop="15dp"
         android:paddingRight="15dp"
         android:paddingBottom="15dp"
-        android:text="bayazid@gmail.com"
         android:textColor="@color/white"
         android:textColorHint="#72798C"
         android:textSize="18sp"
