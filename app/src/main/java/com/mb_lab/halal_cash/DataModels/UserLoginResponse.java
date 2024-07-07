@@ -2,7 +2,7 @@ package com.mb_lab.halal_cash.DataModels;
 
 import java.io.Serializable;
 
-public class UserLoginResponse  implements Serializable {
+public class UserLoginResponse   implements Serializable {
     private String message;
 
     private User user;
