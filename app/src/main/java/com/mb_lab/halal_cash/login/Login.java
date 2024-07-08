@@ -127,7 +127,7 @@ public class Login extends AppCompatActivity {
 
                 Log.d(TAG, "onResponse: Status Code: " + response.code());
 
-                if (response.isSuccessful() || response.code() == 201){
+                if ((response.isSuccessful() || response.code() == 201) && response.body() != null ){
 
 //                    String Message = response.body().getMessage();
 
