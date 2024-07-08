@@ -22,10 +22,10 @@ android {
             // your project's release build type. Make sure to use a build
             // variant with `isDebuggable=false`.
 //            isDebuggable=false
-            isMinifyEnabled = true
+            isMinifyEnabled = false
             // Enables resource shrinking, which is performed by the
             // Android Gradle plugin.
-            isShrinkResources = true
+            isShrinkResources = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

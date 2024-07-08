@@ -130,9 +130,9 @@ public class Login extends AppCompatActivity {
 
                 Log.d(TAG, "onResponse: Status Code: " + response.code());
 
-                if ((response.isSuccessful() || response.code() == 201) && response.body() != null) {
+                if (response.isSuccessful() || response.code() == 201){
 
-                    String Message = response.body().getMessage();
+//                    String Message = response.body().getMessage();
                     String Token =  response.body().getToken();
                     String Id = String.valueOf( response.body().getUser().getId());
                     String Name =  response.body().getUser().getName();
