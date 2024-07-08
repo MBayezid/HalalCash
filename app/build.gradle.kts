@@ -10,7 +10,7 @@ android {
         applicationId = "com.mb_lab.halal_cash"
         minSdk = 24
         targetSdk = 34
-        versionCode = 52
+        versionCode = 53
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -65,7 +66,24 @@ public class Login extends AppCompatActivity {
         }
 
 
-        findViewById(R.id.postLoginData).setOnClickListener(v -> postLoginData());
+        findViewById(R.id.postLoginData).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String UserIdString = ((EditText) findViewById(R.id.userId)).getText().toString();
+                String UserPasswordString = ((EditText) findViewById(R.id.userPassword)).getText().toString();
+
+                // check for valid email or contact and password
+                Log.d(TAG, "tryLogin: userEmail: " + UserIdString);
+                Log.d(TAG, "tryLogin: userPass: " + UserPasswordString);
+
+                //todo check for user_id_type
+                String user_id_type = new InputInformationValidation().getUserIdType(UserIdString);
+                if (user_id_type != null) {
+
+                    postData(UserIdString, user_id_type, UserPasswordString);
+                }
+            }
+        });
 
 
         findViewById(R.id.forgotPassword).setOnClickListener(v -> {
@@ -73,39 +91,18 @@ public class Login extends AppCompatActivity {
             intent.putExtra(changePasswordConstants.REQUEST_FOR, changePasswordConstants.REQUEST_FOR_FORGET_PASSWORD);
             startActivity(intent);
         });
+
         findViewById(R.id.goToRegistration).setOnClickListener(v -> startActivity(new Intent(Login.this, Registration.class)));
 
 
     }
 
-
-    public void postLoginData() {
-        String UserIdString = ((EditText) findViewById(R.id.userId)).getText().toString();
-        String UserPasswordString = ((EditText) findViewById(R.id.userPassword)).getText().toString();
-
-        // check for valid email or contact and password
-        Log.d(TAG, "tryLogin: userEmail: " + UserIdString);
-        Log.d(TAG, "tryLogin: userPass: " + UserPasswordString);
-
-        //todo check for user_id_type
-        String user_id_type = new InputInformationValidation().getUserIdType(UserIdString);
-        if (user_id_type != null) {
-
-            postData(UserIdString, user_id_type, UserPasswordString);
-        }
-    }
-
     private void postData(@NonNull String user_id, @NonNull String user_id_type, @NonNull String password) {
 
-        // below line is for displaying our progress bar.
         viewLoadingAnimation.showLoading(true);
 
-        // on below line we are creating a retrofit
-        // builder and passing our base url
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
-                // as we are sending data in json format so
-                // we have to add Gson converter factory
                 .addConverterFactory(GsonConverterFactory.create())
                 // at last we are building our retrofit builder.
                 .build();
@@ -133,6 +130,7 @@ public class Login extends AppCompatActivity {
                 if (response.isSuccessful() || response.code() == 201){
 
 //                    String Message = response.body().getMessage();
+
                     String Token =  response.body().getToken();
                     String Id = String.valueOf( response.body().getUser().getId());
                     String Name =  response.body().getUser().getName();
@@ -155,11 +153,11 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
 
                     //todo update login information
-                    Intent intent = new Intent(Login.this, Home.class);
+
                     Log.d(TAG, "onResponse: Token: " + Token);
                     Log.d(TAG, "onResponse: User Id: " + Id);
                     viewLoadingAnimation.showLoading(false);
-                    startActivity(intent);
+                    startActivity(new Intent(Login.this, Home.class));
                     finish();
 
 
