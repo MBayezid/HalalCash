@@ -19,6 +19,7 @@ import com.mb_lab.halal_cash.ApiCalls.CommonApiRequest.GetUserBalance;
 import com.mb_lab.halal_cash.R;
 import com.mb_lab.halal_cash.SessionManagers.UserSessionManager;
 import com.mb_lab.halal_cash.SplashActivity;
+import com.mb_lab.halal_cash.home.homeFragments.ComingSoonFragment;
 import com.mb_lab.halal_cash.home.homeFragments.FutureFragment;
 import com.mb_lab.halal_cash.home.homeFragments.HomeFragment;
 import com.mb_lab.halal_cash.home.homeFragments.MarketFragment;
@@ -103,15 +104,18 @@ public class Home extends AppCompatActivity {
             selectedFragment = new HomeFragment();
             bottomNavigationView.setBackgroundColor(getColor(R.color.black));
         } else if (itemId == R.id.action_market) {
-            selectedFragment = new MarketFragment();
+//            selectedFragment = new MarketFragment();
+            selectedFragment = new ComingSoonFragment();
             bottomNavigationView.setBackgroundColor(getColor(R.color.black));
 
         } else if (itemId == R.id.action_trend) {
-            selectedFragment = new TrendFragment();
+//            selectedFragment = new TrendFragment();
+            selectedFragment = new ComingSoonFragment();
             bottomNavigationView.setBackgroundColor(getColor(R.color.black));
 
         } else if (itemId == R.id.action_future) {
-            selectedFragment = new FutureFragment();
+//            selectedFragment = new FutureFragment();
+            selectedFragment = new ComingSoonFragment();
             bottomNavigationView.setBackgroundColor(getColor(R.color.black));
 
         } else if (itemId == R.id.action_wallet) {
