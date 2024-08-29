@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/black"
     android:orientation="vertical"
-    android:weightSum="2"
-    >
+    android:weightSum="2">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -35,6 +34,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:text="Funding"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
                 android:text="Overview"
                 android:textColor="#21252E"
                 android:textSize="20sp"
@@ -50,15 +59,6 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Funding"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -259,7 +259,6 @@
                     android:gravity="center"
                     android:text="@string/pay"
                     android:textColor="@color/white"
-                    android:textSize="12dp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -283,7 +282,6 @@
                     android:gravity="center"
                     android:text="@string/p2p"
                     android:textColor="@color/white"
-                    android:textSize="12dp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -307,7 +305,6 @@
                     android:gravity="center"
                     android:text="@string/sendCash"
                     android:textColor="@color/white"
-                    android:textSize="12dp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -333,7 +330,6 @@
                     android:gravity="center"
                     android:text="@string/mobileTopUp"
                     android:textColor="@color/white"
-                    android:textSize="12sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -376,9 +372,9 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="0dp"
             android:layout_marginTop="10dp"
-            android:visibility="gone"
             android:gravity="center|center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <RadioButton
                 android:layout_width="28dp"
@@ -402,7 +398,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginTop="10dp" >
+            android:layout_marginTop="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -856,7 +852,6 @@
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
-
 
 
     </RelativeLayout>
