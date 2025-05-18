@@ -15,7 +15,7 @@ This project was developed from a client's concept, which was subsequently refin
 * **Locked Transactions:** Feature to prevent unwanted or fraudulent transactions, ensuring financial security.
 * **Interest-Free Loans:** Provides a mechanism for granting loans without any interest, aligning with ethical financial practices.
 * **Multi-Asset Management System:** Ability to manage multiple asset types, including various forms of currency and commodities like `Gold`, `Silver`, `Platinum`, and `BDT` (Bangladeshi Taka).
-* **Decentralized Banking Concept:** Designed conceptually to operate without the direct requirement of traditional bank accounts for certain functionalities.
+* **Decentralized Banking Concept(Not implemented):** Designed conceptually to operate without the direct requirement of traditional bank accounts for certain functionalities.
 
 ## 🛠️ Technology Stack
 
