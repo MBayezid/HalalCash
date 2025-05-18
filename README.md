@@ -19,13 +19,36 @@ This project was developed from a client's concept, which was subsequently refin
 
 ## 🛠️ Technology Stack
 
-This project leverages a modern and robust technology stack for both mobile and backend development:
+This project leverages a modern and robust technology stack for Android development, utilizing various libraries and frameworks to enhance functionality and user experience:
 
-**Mobile Application (Android):**
+**Core Android Development:**
 * **Languages:** `Java`, `Kotlin`
 * **IDE:** `Android Studio`
-* **UI/UX Design:** `XML`
-* **Local Database:** `SQLite`
+* **UI/UX Design:** `XML`, `ViewBinding`
+* **Minimum SDK:** `API 24`
+* **Target SDK:** `API 33`
+* **AppCompat:** `androidx.appcompat:appcompat:1.6.1` - For backward compatibility of newer UI features.
+* **Material Design:** `com.google.android.material:material:1.11.0` - Implementing Material Design principles for a modern UI.
+* **ConstraintLayout:** `androidx.constraintlayout:constraintlayout:2.1.4` - For flexible and efficient UI layouts.
+* **SwipeRefreshLayout:** `androidx.swiperefreshlayout:swiperefreshlayout:1.1.0` - For implementing pull-to-refresh functionality.
+
+**Networking (API Communication):**
+* **Retrofit:** `com.squareup.retrofit2:retrofit:2.9.0` - A type-safe HTTP client for Android and Java.
+* **Gson Converter:** `com.squareup.retrofit2:converter-gson:2.5.0` - A Retrofit converter factory for JSON serialization and deserialization using Gson.
+
+**Image Loading:**
+* **Glide:** `com.github.bumptech.glide:glide:4.12.0` - A fast and efficient image loading library for Android.
+
+**Activity Component:**
+* **AndroidX Activity:** `androidx.activity:activity:1.9.0` - For base activity components.
+
+**Internal Library:**
+* **mbViewLib:** `project(":app:mbViewLib")` - Indicates a local module or library within the project.
+
+**Testing:**
+* **JUnit:** `junit:junit:4.13.2` - Standard testing framework for Java.
+* **AndroidX Test JUnit Extension:** `androidx.test.ext:junit:1.1.5` - JUnit extension for Android testing.
+* **Espresso:** `androidx.test.espresso:espresso-core:3.5.1` - UI testing framework for Android.
 
 **Backend & API:**
 * **Framework:** `Laravel` (PHP)
